@@ -1,6 +1,6 @@
-BEGIN;
-CREATE DATABASE employee_tracker
-\c employee_tracker
+
+CREATE DATABASE employee_tracker;
+\c employee_tracker;
 
 CREATE TABLE departments(
     id SERIAL NOT NULL PRIMARY KEY,
@@ -29,5 +29,3 @@ CREATE TABLE employees(
 
 );
 
-
-COMMIT;
