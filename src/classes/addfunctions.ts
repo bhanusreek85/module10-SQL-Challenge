@@ -107,7 +107,7 @@ export async function updateEmployee() {
             type: 'list',
             name: 'field',
             message: 'Which field do you want to update?',
-            choices: ['first_name', 'last_name', 'role_id', 'manager'],
+            choices: ['first_name', 'last_name'],
         },
         {
             type: 'input',
@@ -117,8 +117,10 @@ export async function updateEmployee() {
     ]);
 
     try {
+      console.log(`UPDATE employees SET ${answers.field} = ${answers.newValue} WHERE id = ${answers.employeeId} RETURNING *`,
+            )
         const res = await pool.query(
-            `UPDATE employees SET ${answers.field} = $1 WHERE id = $2 RETURNING *`,
+            `UPDATE employees SET ${answers.field} = $1 WHERE employee_id = $2 Returning *`,
             [answers.newValue, answers.employeeId]
         );
         console.log('Employee updated:', res.rows[0]);
